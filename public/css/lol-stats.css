@@ -1,0 +1,13 @@
+.icon {
+	float: left;
+	padding-right: 10px;
+}
+.icon-image {
+  width: 200px;
+  height: 200px;
+  margin: 0 10px 10px 0;
+  border-radius: 50%;
+}
+.search-summoner {
+	padding-bottom: 30px;
+}

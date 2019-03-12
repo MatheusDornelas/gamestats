@@ -38,6 +38,7 @@
     "instagram-node": "^0.5.8",
     "jquery": "^3.3.1",
     "lastfm": "^0.9.3",
+    "leaguejs": "^1.14.5",
     "lob": "^6.0.3",
     "lusca": "^1.6.1",
     "mongoose": "^5.4.7",

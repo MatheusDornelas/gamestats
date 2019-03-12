@@ -1,0 +1,19 @@
+Sprint
+
+Implementar rotas
+*Buscar últimas 10 partidas
+*Estatísticas por posição
+ - Vitória/Derrota na season
+ - Média de cs/min
+ - KDA
+*Estatísticas por champion
+ - Vitória/Derrota na season
+ - Média de cs/min
+ - KDA
+ - Quantidade de escolhas
+ - Itemização mais utilizada
+
+Classe de Erros personalizadas
+ - Erros com código e mensagem
+
+Remover código que não está sendo utilizado
