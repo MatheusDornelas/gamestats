@@ -1,4 +1,4 @@
-Sprint
+Sprint até 15/03
 
 Implementar rotas
 *Buscar últimas 10 partidas
@@ -16,4 +16,4 @@ Implementar rotas
 Classe de Erros personalizadas
  - Erros com código e mensagem
 
-Remover código que não está sendo utilizado
+Remover código que não está sendo utilizado - FEITO

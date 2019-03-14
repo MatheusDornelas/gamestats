@@ -1,6 +1,8 @@
-const request = require('request');
+const request = require('request-promise');
 const util = require('util');
 const DataDragonHelper = require('leaguejs/lib/DataDragon/DataDragonHelper');
+var accountId = '';
+var region = '';
 /*
 Exemplo de assertion
 
@@ -47,6 +49,8 @@ exports.getSummonerInfo = (req, res, next) => {
 		}
 		let response = JSON.parse(body);
 
+		accountId = response.accountId;
+		region = params.regi
 		res.json({
 			summonerName: response.name,
 			summonerLevel: response.summonerLevel,
@@ -54,4 +58,62 @@ exports.getSummonerInfo = (req, res, next) => {
 			summonerIcon: "/img/project-fiora-icon.jpg"
 		});
 	});
+}
+
+/*
+Params:
+- region: [String]
+- champion: [String]
+- queue: [int]
+- season: [int]
+- amount: [int]
+*/
+exports.getLastMatches = (req, res, next) => {
+
+	
+	let url = 'https://br1.api.riotgames.com/lol/match/v4/matchlists/by-account/u_EI0yaA5UBWBwye6E_EX50n0sXoUglTq3FnrvCQgdk52oU';
+	var qs = {};
+	qs.api_key = process.env.LOL_KEY;
+	if(req.query.champion){
+		qs.champion = req.query.champion;
+	}
+	if(req.query.queue){
+		qs.queue = req.query.queue;
+	}
+	if(req.query.season){
+		qs.season = req.query.season;
+	}
+	if(req.query.amount){
+		qs.endIndex = req.query.amount;
+	}
+	
+	var options = {
+		uri: url,
+		qs: qs,
+		json: true
+	}
+
+	request(options).then((matches) => {
+
+		let a = matches.matches;
+		let matchesList = [];
+
+		matchesList = a.map((match) => {
+
+			return request({
+				uri: 'https://br1.api.riotgames.com/lol/match/v4/matches/' + match.gameId,
+				qs: {
+					api_key: process.env.LOL_KEY
+				},
+				json: true
+			});
+		});
+		return Promise.all(matchesList);
+	}).then((matches) => {
+
+		res.json(matches);
+	}).catch((err) => {
+		console.log('ERROR!!!');
+		next(err);
+	})
 }

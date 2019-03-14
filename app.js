@@ -137,6 +137,7 @@ app.get('/lolstats', lolController.getIndex);
  * API examples routes.
  */
 app.get('/getSummonerInfo/:summonerName', lolController.getSummonerInfo);
+app.get('/getLastMatches/', lolController.getLastMatches);
 
 /**
  * Error Handler.
